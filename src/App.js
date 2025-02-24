@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function App() { 
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Intro />
+       </header>
+        <img src="Banner.png" className="App-img" alt="ooops" />
     </div>
   );
+  {window.history.replaceState({}, '', "home")}
 }
+
+function Intro() {
+  const queryString = new URLSearchParams(window.location.search);
+  const value = queryString.get("USERID");
+  sessionStorage.setItem('userId', value);
+  const data = sessionStorage.getItem('userId')
+
+  return <div className="intro"> Hello {data ? data : 'anonymous' }</div>
+}
+
+
 
 export default App;

@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&family=Great+Vibes&display=swap');
+
 .App {
   text-align: center;
+  background-color: #fad3a6;
+  height: 100vh;
+  font-family: "Arsenal", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .App-logo {
@@ -14,14 +21,19 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 60px;
+  color: black;
+}
+
+.App-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .App-link {
