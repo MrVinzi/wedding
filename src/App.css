@@ -37,6 +37,10 @@ h2 {
   color: var(--accent);
 }
 
+h3 {
+  font-size: 2rem;
+}
+
 /* Стилі для Header */
 .header {
   background-color: var(--primary);
@@ -136,13 +140,13 @@ h2 {
   background-position: center;
   padding: 50px 20px 0;
   text-align: center;
-  height: 75vh;
+  height: 100vh;
 }
 
 .welcoming {
   margin-left: 60%;
-  margin-top: 15rem;
-  padding: 20px;
+  margin-top: 18rem;
+  padding: 40px;
   background-color: var(--white);
 }
 
@@ -172,7 +176,8 @@ h1 {
   }
 
   .welcoming {
-    margin: 19rem 0 0;
+    margin: 15rem 0 0;
+    padding: 10px;
     font-size: 1rem;
   }
 }
