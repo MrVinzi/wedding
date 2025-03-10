@@ -1,46 +1,292 @@
-@import url('https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700');
+/* colors.css */
 
-.App {
-  text-align: center;
-  background-color: #fad3a6;
-  height: 100vh;
-  font-family: "Arsenal", serif;
-  font-weight: 400;
-  font-style: normal;
+
+@font-face {
+  font-family: "Eastman-Condensed";
+  src: url("https://db.onlinewebfonts.com/t/98da5065c369fc9784c8550663986490.eot");
+  src: url("https://db.onlinewebfonts.com/t/98da5065c369fc9784c8550663986490.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/98da5065c369fc9784c8550663986490.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/98da5065c369fc9784c8550663986490.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/98da5065c369fc9784c8550663986490.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/98da5065c369fc9784c8550663986490.svg#Eastman Condensed Trial Black")format("svg");
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Визначення кольорів */
+:root {
+  --primary: #ffdebb;
+  --secondary: #ffdae7;
+  --accent: #ff66c4;
+  --highlight: #ff914d;
+  --text-color: #333333;
+  --white: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Загальний стиль для сайту */
+body {
+  font-family: 'Arsenal', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--secondary);
+  color: var(--text-color);
 }
 
-.App-header {
-  min-height: 100px;
+h2 {
+  font-family: 'Eastman-Condensed', sans-serif;
+  font-size: 2rem;
+  color: var(--accent);
+}
+
+/* Стилі для Header */
+.header {
+  background-color: var(--primary);
+  padding: 0;
+  position: relative;
+}
+
+.header nav {
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center; 
+  position: absolute;
+}
+
+.header nav ul {
+  list-style: none;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: 60px;
-  color: black;
+  align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
-.App-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+.header nav ul li {
+  position: relative;
+  margin: 0 20px;
+  padding: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.header nav ul li a {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  transition: color 0.3s;
+  font-weight: bold;
+}
+
+.header nav ul li a:hover {
+  color: var(--highlight);
+}
+.logo-item {
+  width: 250px;
+}
+
+.menu-toggle {
+  display: none;
+  background-color: #ff66c4;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .header nav {
+    position: relative;
+  }
+
+  .header nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--white);
+  }
+
+  .header nav ul.open {
+    display: flex;
+  }
+
+  .header nav ul li {
+    margin: 10px 0;
+    
+  }
+  .header nav ul li a {
+    color: var(--accent);
+  }
+
+  .logo-item {
+    display: none;
+  }
+}
+
+
+.banner {
+  display: block;
+  background-image: url('../public/Banner.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 50px 20px 0;
+  text-align: center;
+  height: 75vh;
+}
+
+.welcoming {
+  margin-left: 60%;
+  margin-top: 15rem;
+  padding: 20px;
+  background-color: var(--white);
+}
+
+h1 {
+  font-size: 3rem;
+  color: var(--accent);
+  font-size: 3rem;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.banner p {
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  .banner {
+    padding: 50px 20px 0;
+    background-image: url('../public/Banner_m.png');
+    text-align: center;
+    height: 50vh;
+  }
+
+  .banner {
+    background-position: top center;
+  }
+
+  .welcoming {
+    margin: 19rem 0 0;
+    font-size: 1rem;
+  }
+}
+
+
+.timer {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff914d;
+  margin-top: 20px;
+  padding: 20px;
+}
+.timer h1 {
+   color: var(--white);
+   font-size: 3rem;
+}
+
+/* Стилі для DressCode */
+.dresscode {
+  background-color: var(--white);
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.dresscode p {
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+/* Стилі для EventDetails */
+.event-details {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: var(--primary);
+}
+
+.event-details h3 {
+  font-size: 1.5rem;
+  color: var(--highlight);
+}
+
+.event-details ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.event-details ul li {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin: 10px 0;
+}
+
+/* Стилі для RSVP Form */
+.rsvp-form {
+  background-color: var(--secondary);
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.rsvp-form form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rsvp-form input,
+.rsvp-form select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.rsvp-form button {
+  padding: 10px 20px;
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.rsvp-form button:hover {
+  background-color: var(--highlight);
+}
+
+/* Адаптивні стилі для мобільних пристроїв */
+@media (max-width: 768px) {
+  .header nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header nav ul li {
+    margin: 10px 0;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .rsvp-form form {
+    padding: 15px;
   }
 }
