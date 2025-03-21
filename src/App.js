@@ -1,27 +1,29 @@
+import React from 'react';
+import Header from './Header';
+import Banner from './Banner';
+import Timer from './Timer';
+import Gifts from './Gifts';
+import EventDetails from './EventDetails';
+import Schedule from './Schedule';
+import Playlist from './Playlist';
+import DressCode from './DressCode';
+import RSVPFormDemo from './RSVPFormDemo';
 import './App.css';
 
-function App() { 
-  
+function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Intro />
-       </header>
-        <img src="Banner.png" className="App-img" alt="ooops" />
+      <Header />
+      <Banner />
+      <Timer /> 
+      <Gifts />
+      <EventDetails />
+      <Schedule />
+      <DressCode />
+      <Playlist/>
+      <RSVPFormDemo />
     </div>
   );
-  {window.history.replaceState({}, '', "home")}
 }
-
-function Intro() {
-  const queryString = new URLSearchParams(window.location.search);
-  const value = queryString.get("USERID");
-  sessionStorage.setItem('userId', value);
-  const data = sessionStorage.getItem('userId')
-
-  return <div className="intro"> Hello {data ? data : 'anonymous' }</div>
-}
-
-
 
 export default App;
