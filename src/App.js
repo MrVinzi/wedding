@@ -1,11 +1,13 @@
 import React from 'react';
 import Header from './Header';
 import Banner from './Banner';
-import Playlist from './Playlist';
 import Timer from './Timer';
-import DressCode from './DressCode';
+import Gifts from './Gifts';
 import EventDetails from './EventDetails';
-import RSVPForm from './RSVPForm';
+import Schedule from './Schedule';
+import Playlist from './Playlist';
+import DressCode from './DressCode';
+import RSVPFormDemo from './RSVPFormDemo';
 import './App.css';
 
 function App() {
@@ -13,11 +15,13 @@ function App() {
     <div className="App">
       <Header />
       <Banner />
-      <Timer/> 
+      <Timer /> 
+      <Gifts />
       <EventDetails />
+      <Schedule />
       <DressCode />
       <Playlist/>
-      <RSVPForm />
+      <RSVPFormDemo />
     </div>
   );
 }

@@ -8,13 +8,14 @@ const Banner = () => {
   const isOneGuest = name.indexOf(" ") > 0;
 
   return (
-    <section id="banner" className="banner">
-      <div className='welcoming'>
-        <h3>{isOneGuest ? 'Дорогі наші' : 'Дорогий/а'}</h3>
-        <h1>{name}</h1>
+    <div id="banner" className="banner">
+      <div className="banner-overlay">
+        <div className="welcoming">
+          <h3>{isOneGuest ? 'Дорогі наші' : 'Дорогий/а'}</h3>
+          <h1>{name}</h1>
+        </div>
       </div>
-     
-    </section>
+    </div>
   );
 };
 

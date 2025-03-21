@@ -15,7 +15,7 @@
 /* Визначення кольорів */
 :root {
   --primary: #ffdebb;
-  --secondary: #ffdae7;
+  --secondary: #febcbe;
   --accent: #ff66c4;
   --highlight: #ff914d;
   --text-color: #333333;
@@ -27,21 +27,27 @@ body {
   font-family: 'Arsenal', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: var(--secondary);
   color: var(--text-color);
+  font-size: 20px;
 }
 
 h2 {
   font-family: 'Eastman-Condensed', sans-serif;
-  font-size: 2rem;
+  font-size: 3rem;
   color: var(--accent);
+  text-align: center;
+  display: inline-block;
 }
 
 h3 {
   font-size: 2rem;
 }
 
-/* Стилі для Header */
+section {
+  text-align: center;
+  padding: 0 80px;
+}
+
 .header {
   background-color: var(--primary);
   padding: 0;
@@ -53,6 +59,7 @@ h3 {
   transform: translateX(-50%);
   text-align: center; 
   position: absolute;
+  z-index: 3;
 }
 
 .header nav ul {
@@ -131,28 +138,38 @@ h3 {
   }
 }
 
-
 .banner {
-  display: block;
+  position: relative;
+  width: 100%;
+  height: 100vh;
   background-image: url('../public/Banner.png');
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
-  padding: 50px 20px 0;
+  background-attachment: fixed; 
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  height: 100vh;
+  overflow: hidden;
+}
+
+.banner-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .welcoming {
-  margin-left: 60%;
-  margin-top: 18rem;
   padding: 40px;
-  background-color: var(--white);
+  background-color: rgba(255, 255, 255, 0.8); /* Прозорий фон */
+  border-radius: 10px;
+  text-align: center;
+  margin-right: 30px;
 }
 
 h1 {
-  font-size: 3rem;
-  color: var(--accent);
   font-size: 3rem;
   color: var(--accent);
   margin-bottom: 20px;
@@ -163,77 +180,383 @@ h1 {
   color: var(--text-color);
 }
 
+/* 🔹 Адаптація для мобільних */
 @media (max-width: 768px) {
   .banner {
-    padding: 50px 20px 0;
-    background-image: url('../public/Banner_m.png');
-    text-align: center;
     height: 50vh;
+    background-image: url('../public/Banner_m.png');
+    background-attachment: scroll;
   }
 
-  .banner {
-    background-position: top center;
+  .banner-overlay {
+    justify-content: center;
+    align-items: flex-end;
   }
 
   .welcoming {
-    margin: 15rem 0 0;
-    padding: 10px;
+    padding: 20px;
     font-size: 1rem;
+    margin-right: 0;
   }
 }
 
-
 .timer {
+  position: relative;
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
   color: #ff914d;
+  background-color: var(--secondary);
+  margin-top: 35px;
+  padding-bottom: 50px;
+  ;
+}
+
+.timer::before {
+  position: absolute;
+  content: url("../public/wave.svg");
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  font-size: 0;
+}
+
+.timer h2 {
+   color: var(--accent);
+   margin-top: 10px;
+}
+
+.timer-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
   margin-top: 20px;
-  padding: 20px;
-}
-.timer h1 {
-   color: var(--white);
-   font-size: 3rem;
 }
 
-/* Стилі для DressCode */
-.dresscode {
-  background-color: var(--white);
-  padding: 40px 20px;
+.time-box {
+  background: var(--primary);
+  padding: 15px;
+  border-radius: 10px;
   text-align: center;
+  min-width: 80px;
 }
 
-.dresscode p {
+.time-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.time-label {
+  font-size: 1rem;
+  color: var(--white);
+}
+
+
+.gifts {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: #fef7f1;
+}
+
+.gifts-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 10px 0;
+  position: relative;
+}
+
+.marquee-text {
+  display: inline-block;
+  color: var(--secondary);
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  animation: marquee-scroll 4s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+
+p {
   font-size: 1.2rem;
-  color: var(--text-color);
+  margin-bottom: 20px;
 }
 
-/* Стилі для EventDetails */
+/* 🔹 Адаптація для мобільних */
+@media (max-width: 768px) {
+  .gifts-container {
+    padding: 20px;
+  }
+}
+
 .event-details {
-  padding: 40px 20px;
   text-align: center;
-  background-color: var(--primary);
+  padding: 80px 20px;
+  position: relative;
+  color: #333;
 }
 
-.event-details h3 {
-  font-size: 1.5rem;
-  color: var(--highlight);
+.event-details::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 222, 187, 0.8);
+  z-index: 0;
 }
 
-.event-details ul {
-  list-style-type: none;
-  padding: 0;
+.event-details h2 {
+  font-size: 2.8rem;
+  color: #ff66c4;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
 }
 
-.event-details ul li {
+.venue-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.venue-text {
+  flex: 1;
+  text-align: end;
+  padding: 0 35px;
+}
+
+.venue-text h3 {
+  font-size: 2rem;
+  color: var(--secondary);
+  margin-bottom: 0;
+}
+
+.venue-text p {
   font-size: 1.2rem;
-  color: var(--text-color);
+  color: #333;
   margin: 10px 0;
 }
 
-/* Стилі для RSVP Form */
-.rsvp-form {
+.venue-text a {
+  color: #ff66c4;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.venue-image {
+  position: relative;
+ font-size: 0;
+}
+
+.venue-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: hsla(28, 88%, 73%, 0.3);
+  z-index: 1;
+}
+
+.venue-image img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.schedule {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('../public/disco_bg.jpg');
+}
+
+.schedule-overlay {
+  padding: 40px 20px;
+  background: hsla(28, 88%, 73%, 0.5)
+}
+
+.schedule h2 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.schedule-container {
+  color: var(--white);
+  max-width: 1000px; 
+  margin: 0 auto;
+}
+
+.schedule-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--white);
+}
+
+.schedule-time {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.schedule-event {
+  flex: 1 1 auto;
+  padding-left: 20px;
+}
+
+.schedule-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.schedule-info {
+  font-size: 1.5rem;
+}
+
+.dresscode-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background-color: #fef7f1;
+  min-height: 100vh;
+}
+
+.dresscode-title {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.dresscode-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 800px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .dresscode-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dresscode-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.dresscode-subtitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.dresscode-card a {
+  line-height: 1.5;
+  color: var(--highlight);
+}
+
+
+.dresscode-image-wrapper {
+  margin-top: 10px;
+}
+
+.dresscode-image {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ladies .dresscode-subtitle {
+  color: var(--secondary);
+}
+
+.gentlemen .dresscode-subtitle {
+  color: var(--secondary);
+}
+
+.playlist {
   background-color: var(--secondary);
+}
+
+.playlist-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 0 60px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.playlist-wrapper {
+  display: flex;
+}
+
+.playlist-container p {
+  color: var(--white);
+}
+
+.playlist-container a {
+  line-height: 1.5;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.playlist-title {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.playlist-frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 10px;
+}
+
+.playlist-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.rsvp-form {
   padding: 40px 20px;
   text-align: center;
 }
@@ -291,7 +614,45 @@ h1 {
     font-size: 1.8rem;
   }
 
+  h3 {
+    font-size: 1rem;
+  }
+
+  section {
+    padding: 0 20px;
+  }
+
+  .welcoming h1 {
+    margin-top: 10px;
+  }
+
+  .timer {
+    margin-top: 0;
+  }
+
+  .time-box {
+    padding: 0;
+  }
+
+  .event-details h3 {
+    font-size: 1.5rem;
+  }
+
+  .venue-container {
+    flex-direction: column;
+  }
+
+  .venue-image img {
+    border-radius: 0 0 10px 10px;
+  }
+
+  .schedule-time {
+    text-align: left;
+  }
+
+
   .rsvp-form form {
     padding: 15px;
   }
+  
 }
