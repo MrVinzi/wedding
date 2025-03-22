@@ -21,3 +21,15 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+# DEPLOY
+_DEPLOY/*.js
+!_DEPLOY/jest.config.js
+_DEPLOY/*.d.ts
+_DEPLOY/node_modules
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
