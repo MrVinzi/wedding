@@ -24,10 +24,10 @@ yarn-error.log*
 
 
 # DEPLOY
-_DEPLOY/*.js
-!_DEPLOY/jest.config.js
-_DEPLOY/*.d.ts
-_DEPLOY/node_modules
+_DEPLOY_/*.js
+!_DEPLOY_/jest.config.js
+_DEPLOY_/*.d.ts
+_DEPLOY_/node_modules
 
 # CDK asset staging directory
 .cdk.staging
