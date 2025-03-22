@@ -8,7 +8,7 @@ const DressCode = () => {
   
         <div className="dresscode-card ladies">
           <h2 className="dresscode-subtitle">Лейдіс</h2>
-          <p>Елегантні вечірні сукні у відтінках весільних кольорів: персиковий, бежевий, рожевий, фуксія, а також золотий і срібний. </p>
+          <p>Сукні та костюми у відтінках весільних кольорів: персиковий, бежевий, рожевий, фуксія, а також золотий і срібний. </p>
           <p>Більше натхення дивись тут <a href="https://pin.it/3Ke8TOjRt">Посилання</a></p>
           <div className="dresscode-image-wrapper">
             <img 
@@ -21,7 +21,7 @@ const DressCode = () => {
 
      
         <div className="dresscode-card gentlemen">
-          <h2 className="dresscode-subtitle">Легіня</h2>
+          <h2 className="dresscode-subtitle">Джентелменс</h2>
           <p>Будь ласка, обирайте костюми сірого, чорного кольору або у світлих відтінках. Уникайте синього кольору.</p>
           <p> Більше натхення дивись тут <a href="https://pin.it/19rSz5sYl">Посилання</a></p>
           <div className="dresscode-image-wrapper">

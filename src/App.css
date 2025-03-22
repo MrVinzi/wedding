@@ -279,7 +279,7 @@ h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
   text-transform: uppercase;
-  animation: marquee-scroll 4s linear infinite;
+  animation: marquee-scroll 6s linear infinite;
 }
 
 @keyframes marquee-scroll {
@@ -508,94 +508,6 @@ p {
   color: var(--secondary);
 }
 
-.playlist {
-  background-color: var(--secondary);
-}
-
-.playlist-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px 0 60px;
-  border-radius: 15px;
-  text-align: center;
-}
-
-.playlist-wrapper {
-  display: flex;
-}
-
-.playlist-container p {
-  color: var(--white);
-}
-
-.playlist-container a {
-  line-height: 1.5;
-  font-weight: bold;
-  color: var(--accent);
-}
-
-.playlist-title {
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.playlist-frame {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding-top: 56.25%;
-  border-radius: 10px;
-}
-
-.playlist-frame iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-}
-
-.rsvp-form {
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.rsvp-form form {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.rsvp-form input,
-.rsvp-form select {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.rsvp-form button {
-  padding: 10px 20px;
-  background-color: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.rsvp-form button:hover {
-  background-color: var(--highlight);
-}
-
-/* Адаптивні стилі для мобільних пристроїв */
 @media (max-width: 768px) {
   .header nav ul {
     flex-direction: column;
@@ -642,17 +554,88 @@ p {
     flex-direction: column;
   }
 
+  .venue-text {
+    text-align: center;
+  }
+
   .venue-image img {
     border-radius: 0 0 10px 10px;
   }
 
   .schedule-time {
+    text-align: center;
+  }
+}
+
+.playlist {
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #1a1a1a, #333);
+  text-align: center;
+  color: white;
+}
+
+.playlist-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.playlist-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.playlist-frame {
+  max-width: 350px;
+  max-height: 350px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.playlist-text {
+  max-width: 400px;
+}
+
+.playlist-title {
+  font-size: 2rem;
+  color: var(--secondary);
+  margin-bottom: 10px;
+}
+
+.playlist-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: var(--accent);
+  color: var(--text-color);
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  transition: background 0.3s;
+}
+
+.playlist-link:hover {
+  background-color: var(--secondary);
+  color: var(--white);
+}
+
+@media (min-width: 768px) {
+  .playlist-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .playlist-frame {
+    flex: 1;
+  }
+
+  .playlist-text {
+    flex: 1;
     text-align: left;
   }
-
-
-  .rsvp-form form {
-    padding: 15px;
-  }
-  
 }
+
