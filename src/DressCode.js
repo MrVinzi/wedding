@@ -21,7 +21,7 @@ const DressCode = () => {
 
      
         <div className="dresscode-card gentlemen">
-          <h2 className="dresscode-subtitle">Джентельменс</h2>
+          <h2 className="dresscode-subtitle">Джентелменс</h2>
           <p>Будь ласка, обирайте костюми сірого, чорного кольору або у світлих відтінках. Уникайте синього кольору.</p>
           <p> Більше натхення дивись тут <a href="https://pin.it/19rSz5sYl">Посилання</a></p>
           <div className="dresscode-image-wrapper">
