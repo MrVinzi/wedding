@@ -1,11 +1,8 @@
-import React from 'react';
+import React from 'react'
 
 const Banner = () => {
-  const queryString = new URLSearchParams(window.location.search);
-  const value = queryString.get("USERID");
-  sessionStorage.setItem('userId', value);
-  const name = sessionStorage.getItem('userId') ? sessionStorage.getItem('userId') : "Гість";
-  const isOneGuest = name.indexOf(" ") > 0;
+  const name = sessionStorage.getItem('userId')
+  const isOneGuest = name.indexOf(' ') > 0
 
   return (
     <div id="banner" className="banner">
@@ -16,7 +13,7 @@ const Banner = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Banner;
+export default Banner
