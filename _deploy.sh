@@ -1,3 +1,3 @@
 npm run build
 cd _DEPLOY_
-sh _deploy
+sh _deploy.sh
