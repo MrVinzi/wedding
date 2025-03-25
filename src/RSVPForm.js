@@ -51,7 +51,7 @@ const RSVPForm = () => {
           />
           <div>
             <label>
-              Залишаюся на ніч
+              Залишаюся на ніч в Садибі Дача
               <input
                 type="checkbox"
                 name="stay"
