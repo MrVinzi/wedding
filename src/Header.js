@@ -19,6 +19,7 @@ const Header = () => {
           <li className="logo-item">
           </li>
           <li><a href="#playlist">Плейлист</a></li>
+          <li><a href="#rsvp-form">Реєстрація</a></li>
         </ul>
       </nav>
     </header>

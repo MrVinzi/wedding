@@ -608,7 +608,7 @@ p {
   margin-top: 10px;
   padding: 10px 20px;
   background-color: var(--accent);
-  color: var(--text-color);
+  color: var(--white);
   font-size: 1rem;
   text-decoration: none;
   border-radius: 5px;
@@ -639,3 +639,111 @@ p {
   }
 }
 
+.rsvp-form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+}
+
+.rsvp-form h2 {
+  color: #ffcc99; 
+}
+
+.rsvp-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.rsvp-form input,
+.rsvp-form select {
+  flex: 0 0 40%;
+  padding: 12px;
+  font-size: 1.2rem;
+  border-width: 0 0 1px 0;
+  border-color: var(--highlight);
+  outline: none;
+  font-family: 'Arsenal', sans-serif
+}
+
+.rsvp-form select {
+  color: var(--text-color);
+}
+
+.rsvp-form input:disabled {
+  color: #bfbfbf;
+}
+
+.rsvp-form label {
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: 1.2rem;
+  text-align: left;
+  margin: 10px 0;
+}
+
+.rsvp-form input[type="checkbox"] {
+  flex: 0;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  background: var(--highlight);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.rsvp-form input[type="checkbox"]::before {
+  content: "✔";
+  font-size: 16px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.rsvp-form input[type="checkbox"]:checked::before {
+  opacity: 1;
+}
+
+.rsvp-form div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rsvp-form button {
+  background: var(--highlight);
+  color: var(--white);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 12px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-family: 'Arsenal', sans-serif;
+}
+
+.rsvp-form button:hover {
+  background: var(--accent);
+}
+
+.thanks {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 40px;
+  padding: 40px;
+  border-radius: 10px;
+  color: var(--white);
+  background-color: var(--secondary);
+}
