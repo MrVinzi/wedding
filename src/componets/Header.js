@@ -14,12 +14,12 @@ const Header = () => {
         {isMenuOpen ? 'X' : 'Меню'}
       </button>
         <ul className={`${isMenuOpen ? 'open' : ''}`}>
-          <li><a href="src#event-details">Деталі</a></li>
-          <li><a href="src#dresscode">Дрескод</a></li>
+          <li><a href="#event-details">Деталі</a></li>
+          <li><a href="#dresscode">Дрескод</a></li>
           <li className="logo-item">
           </li>
-          <li><a href="src#playlist">Плейлист</a></li>
-          <li><a href="src#rsvp-form">Реєстрація</a></li>
+          <li><a href="#playlist">Плейлист</a></li>
+          <li><a href="#rsvp-form">Реєстрація</a></li>
         </ul>
       </nav>
     </header>
