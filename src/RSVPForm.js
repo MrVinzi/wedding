@@ -96,7 +96,7 @@ const RSVPForm = () => {
               </select>
             </label>
           </div>
-          <button type="submit">Подати заявку</button>
+          <button type="submit">Зареєструвати</button>
         </form>
        
       )}
