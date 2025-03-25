@@ -13,7 +13,7 @@ import './App.css'
 function App() {
   const queryString = new URLSearchParams(window.location.search);
   const value = queryString.get('USERID')
-  
+
   localStorage.setItem('userId', value || 'Гість');
 
   return (
