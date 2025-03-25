@@ -1,8 +1,8 @@
 import React from 'react'
 
 const Banner = () => {
-  const name = sessionStorage.getItem('userId')
-  const isOneGuest = name.indexOf(' ') > 0
+  const name = localStorage.getItem('userId');
+  const isOneGuest = name ? name.indexOf(' ') > 0 : false;
 
   return (
     <div id="banner" className="banner">
