@@ -38,72 +38,74 @@ const RSVPForm = () => {
 
   return (
     <>
+    <section id="rsvp-form" className="rsvp-form">
+      <h2>Реєстрація на захід</h2>
       {!isSubmitted && (
-        <section id="rsvp-form" className="rsvp-form">
-          <h2>Реєстрація на захід</h2>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Ваше ім'я"
-              value={name}
-              disabled
-            />
-            <div>
-              <label>
-                <input
-                  type="checkbox"
-                  name="stay"
-                  checked={isStayingAtHotel}
-                  onChange={(e) => setIsStatyngAtHotel(e.target.checked)}
-                />
-                Залишаюся на ніч
-              </label>
-            </div>
-            <div>
-              <label>
-                Діти:
-                <select
-                  name="guestChildren"
-                  value={guestChildren}
-                  onChange={(e) => setGuestChildren(Number(e.target.value))}
-                  required
-                >
-                  <option value="">Виберіть к-сть дітей</option>
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </label>
-            </div>
-            <div>
-              <label>
-                Напої:
-                <select
-                  name="drink"
-                  value={drink}
-                  onChange={(e) => setDrink(e.target.value)}
-                  required
-                >
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Ваше ім'я"
+            value={name}
+            disabled
+          />
+          <div>
+            <label>
+              Залишаюся на ніч в Садибі Дача
+              <input
+                type="checkbox"
+                name="stay"
+                checked={isStayingAtHotel}
+                onChange={(e) => setIsStatyngAtHotel(e.target.checked)}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Скількох дітей ви плануєте взяти
+              <select
+                name="guestChildren"
+                value={guestChildren}
+                onChange={(e) => setGuestChildren(Number(e.target.value))}
+                required
+              >
+                <option value="">Виберіть к-сть дітей</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              Що ви будете пити 
+              <select
+                name="drink"
+                value={drink}
+                onChange={(e) => setDrink(e.target.value)}
+                required
+              >
                   <option value="">Виберіть напій</option>
-                  <option value="wine">Вино</option>
-                  <option value="beer">Пиво</option>
-                  <option value="whiskey">Віскі</option>
-                  <option value="champaign">Ігристе вино</option>
-                  <option value="water">Вода</option>
-                </select>
-              </label>
-            </div>
-            <button type="submit">Подати заявку</button>
-          </form>
-        </section>
+                <option value="whiskey">Віскі</option>
+                <option value="dwine">Вино Сухе</option>
+                <option value="swine">Вино Напівсолодке</option>
+                <option value="champaign">Ігристе вино</option>
+                <option value="gorilka">Горілка</option>
+                <option value="water">Б/А</option>
+              </select>
+            </label>
+          </div>
+          <button type="submit">Зареєструватись</button>
+        </form>
+       
       )}
       {isSubmitted && (
         <div className="thanks">
-          Дякуємо за заповнення форми, чекатимо Вас
+          Дякуємо за заповнення форми, до зустрічі 10.05 у Садибі Дача!
         </div>
-      )}
+      )} 
+      </section>
     </>
   );
 };
