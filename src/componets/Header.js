@@ -13,7 +13,7 @@ const Header = () => {
       <button className="menu-toggle" onClick={toggleMenu}>
         {isMenuOpen ? 'X' : 'Меню'}
       </button>
-        <ul className={`${isMenuOpen ? 'open' : ''}`}> 
+        <ul className={`${isMenuOpen ? 'open' : ''}`}>
           <li><a href="#event-details">Деталі</a></li>
           <li><a href="#dresscode">Дрескод</a></li>
           <li className="logo-item">
