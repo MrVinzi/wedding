@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import {
+  allowSubmit,
+  changeArrayLength,
+  drinkOptions,
+  guestAdultsOptions,
+  guestChildrenOptions,
+  optionsDrinkToText,
+} from '../utils/app-utils'
 
 const RSVPForm = () => {
   const [isSubmitted, setSubmitted] = useState(false)
@@ -8,13 +16,13 @@ const RSVPForm = () => {
 
   const [formData, setFormData] = useState({
     guestChildren: 0,
-    drink: '',
+    guestAdults: 0,
+    drink: [],
     isStayingAtHotel: false,
   })
 
   // Заповнення форми реестації збереженими раніше значеннями та Підрахунок кількості входів на сайт
   useEffect(() => {
-    setSubmitted(true)
     axios({
       method: 'post',
       url,
@@ -25,23 +33,24 @@ const RSVPForm = () => {
       },
     })
       .then((res) => {
-        setSubmitted(false)
+        const { guestChildren, guestAdults, drink, isStayingAtHotel } = res?.data?.data
         setFormData({
-          guestChildren: res?.data?.data?.guestChildren || 0,
-          drink: res?.data?.data?.drink || '',
-          isStayingAtHotel: res?.data?.data?.isStayingAtHotel || false,
+          guestChildren: guestChildren || 0,
+          guestAdults: guestAdults || 0,
+          drink: changeArrayLength(drink || [], guestAdults || 0),
+          isStayingAtHotel: isStayingAtHotel || false,
         })
+        if (guestAdults > 0) setSubmitted(true)
       })
       .catch((err) => {
         console.log(err)
-        setSubmitted(false)
       })
   }, [userId])
+
 
   // Збереження даних з форми в базу даних
   const handleSubmit = (e) => {
     e.preventDefault()
-    setSubmitted(true)
     axios({
       method: 'post',
       url,
@@ -52,14 +61,15 @@ const RSVPForm = () => {
       },
     })
       .then((res) => {
-        setSubmitted(false)
+        setSubmitted(true)
       })
       .catch((err) => {
         alert('Щось пішло не так, спробуйте пізніше')
         console.log(err)
-        setSubmitted(false)
       })
   }
+
+  const allowSubmiting = allowSubmit(formData)
 
   return (
     <>
@@ -93,40 +103,114 @@ const RSVPForm = () => {
                   required
                 >
                   <option value="">Виберіть к-сть дітей</option>
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
+                  {guestChildrenOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
                 </select>
               </label>
             </div>
             <div>
-              <label>
-                Що ви будете пити
+              <label style={{ color:  formData.guestAdults ? undefined : 'red'}}>
+                Скільки буде дорослих осіб
                 <select
-                  name="drink"
-                  value={formData.drink}
+                  name="guestAdults"
+                  value={formData.guestAdults}
                   onChange={(e) => {
-                    setFormData({ ...formData, drink: e.target.value })
+                    setFormData({
+                      ...formData,
+                      guestAdults: Number(e.target.value),
+                      drink: changeArrayLength(formData.drink, Number(e.target.value)),
+                    })
                   }}
                   required
                 >
-                  <option value="">Виберіть напій</option>
-                  <option value="whiskey">Віскі</option>
-                  <option value="dwine">Вино Сухе</option>
-                  <option value="swine">Вино Напівсолодке</option>
-                  <option value="champaign">Ігристе вино</option>
-                  <option value="gorilka">Горілка</option>
-                  <option value="water">Б/А</option>
+                  <option value="">Виберіть к-сть дорослих</option>
+                  {guestAdultsOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
                 </select>
               </label>
             </div>
-            <button type="submit" onSubmit={handleSubmit}>
+            <div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <label>Що ви будете пити</label>
+                {Array.from({ length: formData.guestAdults }).map((_, index) => (
+                  <label key={index} style={{ color:  formData.drink[index] ? undefined : 'red'}}>
+                    Напій для особи {index + 1}:
+                    <select
+                      name={`drink${index}`}
+                      value={formData.drink[index]}
+                      required
+                      onChange={(e) => {
+                        const newDrink = formData.drink
+                        newDrink[index] = e.target.value
+                        setFormData({ ...formData, drink: newDrink })
+                      }}
+                    >
+                      <option value="">Виберіть напій</option>
+                      {drinkOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              onSubmit={handleSubmit}
+              disabled={!allowSubmiting}
+              style={{
+                cursor: allowSubmiting ? 'pointer' : 'not-allowed',
+                opacity: allowSubmiting ? 1 : 0.6,
+                backgroundColor: allowSubmiting ? undefined : 'gray',
+              }}
+            >
               Зареєструватись
             </button>
           </form>
         )}
-        {isSubmitted && <div className="thanks">Дякуємо за заповнення форми, до зустрічі 10.05 у Садибі Дача!</div>}
+        {isSubmitted && (
+          <>
+            <div className="thanks">Дякуємо за заповнення форми, до зустрічі 10.05 у Садибі Дача!</div>
+            <div style={{ paddingTop: '10px' }}>
+              <table
+                border=""
+                cellpadding="8"
+                cellspacing="0"
+                style={{ borderColor: 'white', width: '100%', textAlign: 'left' }}
+              >
+                {formData.isStayingAtHotel && (
+                  <tr>
+                    <td сolspan="2">ВИ Залишаюсsя на ніч в Садибі Дача</td>
+                  </tr>
+                )}
+                {formData.guestChildren > 0 && (
+                  <tr>
+                    <td >Кількість дітей</td>
+                    <td>{formData.guestChildren}</td>
+                  </tr>
+                )}
+                <tr>
+                  <td>Кількість дорослих</td>
+                  <td>{formData.guestAdults}</td>
+                </tr>
+                <tr>
+                  <td>Ваші напої</td>
+                  <td>{optionsDrinkToText(formData.drink)}</td>
+                </tr>
+              </table>
+            </div>
+            <button onClick={() => setSubmitted(false)}>Заповнити ще раз</button>
+          </>
+        )}
       </section>
     </>
   )

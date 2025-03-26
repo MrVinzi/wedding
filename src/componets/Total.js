@@ -1,30 +1,14 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { drinkSummary, dataFormat, formatDate, totalGuestAdults, totalGuestChildren, totalStayingAtHotel } from '../utils/app-utils'
 
 const Total = () => {
   const [mongoData, setMongoData] = useState([])
   const url = 'https://api-fiverr-dev.queue-my.net/w-user'
 
-  // Форматування та сортування
-  const formattedData = mongoData
-    .map(({ userId, drink, guestChildren, isStayingAtHotel, countVisits }) => ({
-      userId,
-      drink,
-      guestChildren,
-      isStayingAtHotel,
-      countVisits
-    }))
-    .sort((a, b) => a.drink.localeCompare(b.drink))
-
-  // Обчислення підсумків
-  const totalGuestChildren = formattedData.reduce((sum, item) => sum + (item.guestChildren || 0), 0)
-  const totalStayingAtHotel = formattedData.filter((item) => item.isStayingAtHotel).length
-
-  // Групування за drink
-  const drinkSummary = formattedData.reduce((acc, { drink }) => {
-    acc[drink] = (acc[drink] || 0) + 1
-    return acc
-  }, {})
+  const formattedData = useMemo(() => {
+    return dataFormat(mongoData)
+  }, [mongoData])
 
   useEffect(() => {
     axios({
@@ -44,21 +28,23 @@ const Total = () => {
   }, [])
 
   console.log('Formatted Data:', formattedData)
-  console.log('Total Guest Children:', totalGuestChildren)
-  console.log('Total Staying at Hotel:', totalStayingAtHotel)
-  console.log('Drink Summary:', drinkSummary)
+  console.log('Total Guest Children:', totalGuestChildren(formattedData))
+  console.log('Total Guest Adults:', totalGuestAdults(formattedData))
+  console.log('Total Staying at Hotel:', totalStayingAtHotel(formattedData))
+  console.log('Drink Summary:', drinkSummary(formattedData))
 
   return (
-    <div>
+    <div style={{ margin: '20px' }}>
       {/* Перша таблиця */}
       <table border="1" cellPadding="5" cellSpacing="0">
         <thead>
           <tr>
             <th>User ID</th>
             <th>Drink</th>
-            <th>Guest Children</th>
-            <th>Is Staying at Hotel</th>
-            <th>Count Visits</th>
+            <th>Children</th>
+            <th>Is Hotel</th>
+            <th>Visits</th>
+            <th>Date</th>
           </tr>
         </thead>
         <tbody>
@@ -69,6 +55,7 @@ const Total = () => {
               <td>{item.guestChildren}</td>
               <td>{item.isStayingAtHotel ? 'Yes' : 'No'}</td>
               <td>{item.countVisits}</td>
+              <td>{formatDate(item.updateAt)}</td>
             </tr>
           ))}
         </tbody>
@@ -82,6 +69,9 @@ const Total = () => {
             </td>
             <td>
               <strong>{totalStayingAtHotel}</strong>
+            </td>
+            <td>
+              <strong>-</strong>
             </td>
             <td>
               <strong>-</strong>
