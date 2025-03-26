@@ -14,6 +14,7 @@ const RSVPForm = () => {
 
   // Заповнення форми реестації збереженими раніше значеннями та Підрахунок кількості входів на сайт
   useEffect(() => {
+    setSubmitted(true)
     axios({
       method: 'post',
       url,

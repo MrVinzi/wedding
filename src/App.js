@@ -9,12 +9,13 @@ import Playlist from './componets/Playlist'
 import DressCode from './componets/DressCode'
 import RSVPForm from './componets/RSVPForm'
 import './App.css'
+import Total from './componets/Total'
 
 function App() {
-  const queryString = new URLSearchParams(window.location.search);
+  const queryString = new URLSearchParams(window.location.search)
   const value = queryString.get('USERID')
 
-  if (value) localStorage.setItem('userId', value);
+  if (value && value !== 'total') localStorage.setItem('userId', value)
 
   return (
     <div className="App">
@@ -26,7 +27,8 @@ function App() {
       <Schedule />
       <DressCode />
       <Playlist />
-      <RSVPForm  />
+      {value !== 'total'&& value !== 'Гість' && <RSVPForm />}
+      {value === 'total' && <Total />}
     </div>
   )
 }
