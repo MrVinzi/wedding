@@ -7,9 +7,9 @@ import EventDetails from './componets/EventDetails'
 import Schedule from './componets/Schedule'
 import Playlist from './componets/Playlist'
 import DressCode from './componets/DressCode'
-import RSVPForm from './componets/RSVPForm'
 import './App.css'
 import Total from './componets/Total'
+import RSVPForm from './componets/rsvp-form/Form'
 
 function App() {
   const queryString = new URLSearchParams(window.location.search)
