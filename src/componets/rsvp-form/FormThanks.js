@@ -7,15 +7,14 @@ export const FormThanks = ({ formData, setSubmitted }) => {
       <div style={{ paddingTop: '10px' }}>
         <table
           border=""
-          cellpadding="8"
-          cellspacing="0"
           style={{ borderColor: 'white', width: '100%', textAlign: 'left' }}
         >
-          {formData.isStayingAtHotel && (
-            <tr>
-              <td сolspan="2">Залишаюся на ніч в Садибі Дача</td>
-            </tr>
-          )}
+          <tbody>
+            {formData.isStayingAtHotel && (
+              <tr>
+                <td сolspan="2">Залишаюся на ніч в Садибі Дача</td>
+              </tr>
+            )}
           {formData.guestChildren > 0 && (
             <tr>
               <td>Кількість дітей</td>
@@ -28,8 +27,9 @@ export const FormThanks = ({ formData, setSubmitted }) => {
           </tr>
           <tr>
             <td>Ваші напої</td>
-            <td>{optionsDrinkToText(formData.drink)}</td>
-          </tr>
+              <td>{optionsDrinkToText(formData.drink)}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <button onClick={() => setSubmitted(false)}>Заповнити ще раз</button>
