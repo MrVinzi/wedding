@@ -597,6 +597,11 @@ p {
   max-width: 400px;
 }
 
+.playlist-text  ul {
+  text-align: left;
+  list-style: none;
+}
+
 .playlist-title {
   font-size: 2rem;
   color: var(--secondary);
@@ -714,10 +719,10 @@ p {
   opacity: 1;
 }
 
-.rsvp-form div {
+.rsvp-form-drink { 
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+
 }
 
 .rsvp-form button {

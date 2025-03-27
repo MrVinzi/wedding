@@ -22,9 +22,13 @@ const Playlist = () => {
               Додайте свою улюблену пісню до нашого весільного плейлиста!  
               Ваш вибір зробить наше свято ще кращим!  
               Просто перейдіть за посиланням:
+              <ul>
+                <li>1. Станьте співавтором нашого плейлиста</li>
+                <li>2. Перейдіть на улюблений трек та в нашатування пісні додайте його в бібліокеку Wedding</li>
+              </ul>
             </p>
             <a
-              href="https://music.youtube.com/playlist?list=PL3edQ3rtu4DNkzCUK1YtzgkZzTrga7PYm"
+              href="https://music.youtube.com/playlist?list=PL3edQ3rtu4DNkzCUK1YtzgkZzTrga7PYm&jct=YZsnmqsLnkNA5O9WmRCD8g"
               target="_blank"
               rel="noopener noreferrer"
               className="playlist-link"

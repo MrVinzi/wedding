@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from "framer-motion";
 import Header from './componets/Header'
 import Banner from './componets/Banner'
 import Timer from './componets/Timer'
@@ -11,6 +12,11 @@ import './App.css'
 import Total from './componets/Total'
 import RSVPForm from './componets/rsvp-form/Form'
 
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 3 } }
+};
+
 function App() {
   const queryString = new URLSearchParams(window.location.search)
   const value = queryString.get('USERID')
@@ -19,16 +25,40 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Banner />
-      <Timer />
-      <Gifts />
-      <EventDetails />
-      <Schedule />
-      <DressCode />
-      <Playlist />
-      {value !== 'total'&& value !== 'Гість' && <RSVPForm />}
-      {value === 'total' && <Total />}
+      <motion.header initial="hidden" animate="visible" variants={fadeIn}>
+        <Header />
+      </motion.header>
+
+      <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+        <Banner />
+        <Timer />
+      </motion.div>
+
+      <motion.section initial="hidden" animate="visible" variants={fadeIn}>
+        <Gifts />
+      </motion.section>
+
+      <motion.section initial="hidden" animate="visible" variants={fadeIn}>
+        <EventDetails />
+      </motion.section>
+
+      <motion.section initial="hidden" animate="visible" variants={fadeIn}>
+       <Schedule />
+      </motion.section>
+
+      <motion.section initial="hidden" animate="visible" variants={fadeIn}>
+        <DressCode />
+      </motion.section>
+
+      <motion.section initial="hidden" animate="visible" variants={fadeIn}>
+        <Playlist />
+      </motion.section>
+
+      <motion.section initial="hidden" animate="visible" variants={fadeIn}>
+        {value !== 'total'&& value !== 'Гість' && <RSVPForm />}
+        {value === 'total' && <Total />}
+      </motion.section>
+
     </div>
   )
 }

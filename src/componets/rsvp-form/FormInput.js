@@ -26,28 +26,9 @@ export const FormInput = ({
           />
         </label>
       </div>
+      
       <div>
         <label>
-          Скількох дітей ви плануєте взяти
-          <select
-            name="guestChildren"
-            value={formData.guestChildren}
-            onChange={(e) => {
-              setFormData({ ...formData, guestChildren: Number(e.target.value) })
-            }}
-            required
-          >
-            <option value="">Виберіть к-сть дітей</option>
-            {guestChildrenOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <div>
-        <label style={{ color: formData.guestAdults ? undefined : 'red' }}>
           Скільки буде дорослих осіб
           <select
             name="guestAdults"
@@ -70,11 +51,12 @@ export const FormInput = ({
           </select>
         </label>
       </div>
-      <div>
+      <div className='rsvp-form-drink'>    
+      <p>Що ви будете пити? Просимо Б/А обирати у випадку, якщо ви взагалі не будете вживати алкоголь.</p>     
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <label>Що ви будете пити</label>
           {Array.from({ length: formData.guestAdults }).map((_, index) => (
-            <label key={index} style={{ color: formData.drink[index] ? undefined : 'red' }}>
+            <label key={index}>
+     
               Напій для особи {index + 1}:
               <select
                 name={`drink${index}`}
@@ -97,7 +79,26 @@ export const FormInput = ({
           ))}
         </div>
       </div>
-
+      <div>
+        <label>
+          Скількох дітей ви плануєте взяти
+          <select
+            name="guestChildren"
+            value={formData.guestChildren}
+            onChange={(e) => {
+              setFormData({ ...formData, guestChildren: Number(e.target.value) })
+            }}
+            required
+          >
+            <option value="">Виберіть к-сть дітей</option>
+            {guestChildrenOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
       <button
         type="submit"
         onSubmit={handleSubmit}
