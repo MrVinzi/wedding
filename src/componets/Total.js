@@ -1,6 +1,13 @@
 import axios from 'axios'
 import { useEffect, useMemo, useState } from 'react'
-import { drinkSummary, dataFormat, formatDate, totalGuestAdults, totalGuestChildren, totalStayingAtHotel } from '../utils/app-utils'
+import {
+  dataFormat,
+  formatDate,
+  totalGuestAdults,
+  totalGuestChildren,
+  totalStayingAtHotel,
+  drinkTotal,
+} from '../utils/app-utils'
 
 const Total = () => {
   const [mongoData, setMongoData] = useState([])
@@ -31,7 +38,7 @@ const Total = () => {
   console.log('Total Guest Children:', totalGuestChildren(formattedData))
   console.log('Total Guest Adults:', totalGuestAdults(formattedData))
   console.log('Total Staying at Hotel:', totalStayingAtHotel(formattedData))
-  console.log('Drink Summary:', drinkSummary(formattedData))
+  console.log('Drink Summary:', drinkTotal(formattedData))
 
   return (
     <div style={{ margin: '20px' }}>
@@ -40,8 +47,9 @@ const Total = () => {
         <thead>
           <tr>
             <th>User ID</th>
-            <th>Drink</th>
             <th>Children</th>
+            <th>Adults</th>
+            <th>Drink</th>
             <th>Is Hotel</th>
             <th>Visits</th>
             <th>Date</th>
@@ -51,8 +59,9 @@ const Total = () => {
           {formattedData.map((item, index) => (
             <tr key={index}>
               <td>{item.userId}</td>
-              <td>{item.drink}</td>
               <td>{item.guestChildren}</td>
+              <td>{item.guestAdults}</td>
+              <td>{item.drink.join(', ')}</td>
               <td>{item.isStayingAtHotel ? 'Yes' : 'No'}</td>
               <td>{item.countVisits}</td>
               <td>{formatDate(item.updateAt)}</td>
@@ -61,14 +70,20 @@ const Total = () => {
         </tbody>
         <tfoot>
           <tr>
-            <td colSpan="2">
+            <td>
               <strong>Totals</strong>
             </td>
             <td>
-              <strong>{totalGuestChildren}</strong>
+              <strong>{totalGuestChildren(formattedData || [])}</strong>
             </td>
             <td>
-              <strong>{totalStayingAtHotel}</strong>
+              <strong>{totalGuestAdults(formattedData || [])}</strong>
+            </td>
+            <td>
+              <strong>-</strong>
+            </td>
+            <td>
+              <strong>-</strong>
             </td>
             <td>
               <strong>-</strong>
@@ -91,7 +106,7 @@ const Total = () => {
           </tr>
         </thead>
         <tbody>
-          {Object.entries(drinkSummary).map(([drink, count]) => (
+          {Object.entries(drinkTotal(formattedData)).map(([drink, count]) => (
             <tr key={drink}>
               <td>{drink}</td>
               <td>{count}</td>

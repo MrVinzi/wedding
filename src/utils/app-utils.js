@@ -1,15 +1,13 @@
 export const dataFormat = (mongoData) => {
-  return mongoData
-    .map(({ userId, drink, guestChildren, guestAdults, isStayingAtHotel, countVisits, updateAt }) => ({
-      userId,
-      drink,
-      guestChildren,
-      guestAdults,
-      isStayingAtHotel,
-      countVisits,
-      updateAt,
-    }))
-    .sort((a, b) => a.drink.localeCompare(b.userId))
+  return mongoData.map(({ userId, drink, guestChildren, guestAdults, isStayingAtHotel, countVisits, updateAt }) => ({
+    userId,
+    drink,
+    guestChildren,
+    guestAdults,
+    isStayingAtHotel,
+    countVisits,
+    updateAt,
+  }))
 }
 
 export const totalGuestChildren = (formatData) => formatData.reduce((sum, item) => sum + (item.guestChildren || 0), 0)
@@ -18,9 +16,17 @@ export const totalGuestAdults = (formatData) => formatData.reduce((sum, item) =>
 
 export const totalStayingAtHotel = (formatData) => formatData.filter((item) => item.isStayingAtHotel).length
 
-export const drinkSummary = (formatData) =>
-  formatData.reduce((acc, { drink }) => {
-    acc[drink] = (acc[drink] || 0) + 1
+// export const drinkSummary = (formatData) =>
+//   formatData.reduce((acc, { drink }) => {
+//     acc[drink] = (acc[drink] || 0) + 1
+//     return acc
+//   }, {})
+
+export const drinkTotal = (data) =>
+  data.reduce((acc, person) => {
+    person.drink.forEach((drink) => {
+      acc[drink] = (acc[drink] || 0) + 1
+    })
     return acc
   }, {})
 
@@ -64,7 +70,7 @@ export const changeArrayLength = (array, length) => {
 export const allowSubmit = (formData) => {
   const { guestAdults, drink } = formData
   let res = true
-  
+
   if (guestAdults === 0) res = false
   drink.forEach((item) => {
     if (item === '') res = false
@@ -74,7 +80,9 @@ export const allowSubmit = (formData) => {
 }
 
 export const optionsDrinkToText = (drink) => {
-  return drink.map((item) => {
-    return drinkOptions.find((option) => option.value === item)?.name
-  }).join(', ')
+  return drink
+    .map((item) => {
+      return drinkOptions.find((option) => option.value === item)?.name
+    })
+    .join(', ')
 }
