@@ -26,10 +26,12 @@ export const FormInput = ({
           />
         </label>
       </div>
-      
+
       <div>
-        <label>
-          Скільки буде дорослих осіб
+        <label style={{ color: formData.guestAdults ? undefined : 'red' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <pre style={{ color: 'red' , fontSize: '14px'}}>*</pre>Скільки буде дорослих осіб
+          </div>
           <select
             name="guestAdults"
             value={formData.guestAdults}
@@ -51,13 +53,14 @@ export const FormInput = ({
           </select>
         </label>
       </div>
-      <div className='rsvp-form-drink'>    
-      <p>Що ви будете пити? Просимо Б/А обирати у випадку, якщо ви взагалі не будете вживати алкоголь.</p>     
+      <div className="rsvp-form-drink">
+        <p>Що ви будете пити? Просимо Б/А обирати у випадку, якщо ви взагалі не будете вживати алкоголь.</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           {Array.from({ length: formData.guestAdults }).map((_, index) => (
-            <label key={index}>
-     
-              Напій для особи {index + 1}:
+            <label key={index} style={{ color: formData.drink[index] ? undefined : 'red' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <pre style={{ color: 'red', fontSize: '14px' }}>*</pre>Напій для особи {index + 1}:
+              </div>
               <select
                 name={`drink${index}`}
                 value={formData.drink[index]}
