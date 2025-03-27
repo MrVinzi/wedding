@@ -12,7 +12,7 @@ export const FormThanks = ({ formData, setSubmitted }) => {
           <tbody>
             {formData.isStayingAtHotel && (
               <tr>
-                <td сolspan="2">Залишаюся на ніч в Садибі Дача</td>
+                <td colSpan="2">Залишаюся на ніч в Садибі Дача</td>
               </tr>
             )}
           {formData.guestChildren > 0 && (
