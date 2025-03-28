@@ -1,5 +1,5 @@
 import React from 'react'
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion'
 import Header from './componets/Header'
 import Banner from './componets/Banner'
 import Timer from './componets/Timer'
@@ -14,12 +14,14 @@ import RSVPForm from './componets/rsvp-form/Form'
 
 const fadeIn = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 3 } }
-};
+  visible: { opacity: 1, transition: { duration: 3 } },
+}
 
 function App() {
   const queryString = new URLSearchParams(window.location.search)
-  const value = queryString.get('USERID')
+  let value = queryString.get('USERID')
+
+  if (value && value === 'Маша і рома') value = 'Маша і Рома'
 
   if (value && value !== 'total') localStorage.setItem('userId', value)
 
@@ -43,7 +45,7 @@ function App() {
       </motion.section>
 
       <motion.section initial="hidden" animate="visible" variants={fadeIn}>
-       <Schedule />
+        <Schedule />
       </motion.section>
 
       <motion.section initial="hidden" animate="visible" variants={fadeIn}>
@@ -55,10 +57,9 @@ function App() {
       </motion.section>
 
       <motion.section initial="hidden" animate="visible" variants={fadeIn}>
-        {value !== 'total'&& value !== 'Гість' && <RSVPForm />}
+        {value !== 'total' && value !== 'Гість' && <RSVPForm />}
         {value === 'total' && <Total />}
       </motion.section>
-
     </div>
   )
 }
