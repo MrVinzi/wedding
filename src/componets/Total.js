@@ -27,7 +27,9 @@ const Total = () => {
       },
     })
       .then((res) => {
-        setMongoData(res?.data?.data)
+        const data = res?.data?.data
+        const sortedData = data.sort((a, b) => new Date(b.updateAt) - new Date(a.updateAt))
+        setMongoData(sortedData)
       })
       .catch((err) => {
         console.log(err)
