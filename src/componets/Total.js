@@ -61,11 +61,11 @@ const Total = () => {
           {formattedData.map((item, index) => (
             <tr key={index}>
               <td>{item.userId}</td>
-              <td>{item.guestChildren}</td>
-              <td>{item.guestAdults}</td>
+              <td>{item.guestChildren ? item.guestChildren : ''}</td>
+              <td>{item.guestAdults ? item.guestAdults : ''}</td>
               <td>{item.drink.join(', ')}</td>
-              <td>{item.isStayingAtHotel ? 'Yes' : 'No'}</td>
-              <td>{item.countVisits}</td>
+              <td>{item.isStayingAtHotel ? 'Yes' : ''}</td>
+              <td>{item.countVisits ? item.countVisits : ''}</td>
               <td>{formatDate(item.updateAt)}</td>
             </tr>
           ))}
